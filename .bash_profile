@@ -8,6 +8,10 @@ alias ga="git add ."
 alias gr="git reset --hard HEAD"
 alias kts="tx ls | awk '{print $1}' | sed 's/://g' | xargs -I{} tmux kill-session -t {}"
 
-alias bex="bundle exec"
+if [ -z $BASH_INIT ]; then
+	export BASH_INIT=1
+	source ~/.bashrc
+fi
 
 source ~/.bash_prompt
+

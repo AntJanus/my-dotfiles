@@ -19,6 +19,7 @@ call vundle#begin()
 " Plugin 'ack.vim'
  Plugin 'sjl/badwolf'
  Plugin 'plasticboy/vim-markdown'
+ Plugin 'jtratner/vim-flavored-markdown'
  Plugin 'groenewege/vim-less'
  Plugin 'editorconfig-vim'
  Plugin 'bling/vim-airline'
@@ -30,10 +31,12 @@ call vundle#begin()
  Plugin 'scrooloose/NERDTree'
  Plugin 'scrooloose/NERDCommenter'
  Plugin 'scrooloose/syntastic'
- " Plugin 'digitaltoad/vim-jade'
  Plugin 'Tabular'
- "Plugin 'Shougo/neocomplete.vim'
- " Plugin 'Neocomplete'
+ Plugin 'pangloss/vim-javascript'
+ Plugin 'mxw/vim-jsx'
+ Plugin 'leafgarland/typescript-vim'
+ Plugin 'Valloric/YouCompleteMe'
+ Plugin 'ternjs/tern_for_vim'
  " non github repos
  " Plugin 'git://git.wincent.com/command-t.git'
  " ...
@@ -73,14 +76,11 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
-" Necomplete
-let g:neocomplete#enable_at_startup = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
+" Syntastic
+let g:syntastic_javascript_checkers = ['eslint']
 
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
@@ -185,6 +185,8 @@ autocmd BufRead,BufNewFile *.profile set filetype=php
 autocmd BufRead,BufNewFile *.view set filetype=php
 autocmd BufNewFile,BufRead *.less set filetype=less
 autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
+autocmd BufRead,BufNewFile *.ts set ft=typescript syntax=typescript
+autocmd BufRead,BufNewFile *.es6 set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile *.twig set ft=htmldjango
 autocmd BufRead,BufNewFile *.rabl set ft=ruby
@@ -200,10 +202,14 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Whitespace fixes
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+
+augroup whitespace
+ autocmd!
+ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+ autocmd BufWinLeave * call clearmatches()
+augroup END
 
 set undolevels=20
 set title
@@ -227,6 +233,7 @@ nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 nnoremap <leader>vi :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
+nnoremap <leader>re gg=G
 
 " Save
 noremap  <silent> <C-S> :update<CR>

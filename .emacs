@@ -24,7 +24,7 @@
 (package-initialize)
 
 ;; packages
-(setq required-pkgs '(web-mode markdown-mode js2-mode json-mode ac-js2 yasnippet auto-complete sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile))
+(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode))
 
 (require 'cl)
 
@@ -92,6 +92,9 @@
       ad-do-it)
     ad-do-it))
 
+;; editorconfig
+(require 'editorconfig)
+(editorconfig-mode 1)
 
 ;; markdown
 (autoload 'markdown-mode "markdown-mode"
@@ -100,13 +103,17 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
+;; scss
+(require 'scss-mode)
+(add-to-list 'auto-mode-alist '("\\.scss\\'". scss-mode))
+
 ;; hooks
 (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 (setq js2-highlight-level 3)
 
 ;; set theme
-(load-theme 'graham t)
+(load-theme 'badwolf t)
 (powerline-evil-vim-color-theme)
 (display-time-mode t)
 (global-linum-mode)
@@ -128,7 +135,7 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key "w" 'save-buffer)
 (evil-leader/set-key "v" 'split-window-right)
-(evil-leader/set-key "p" 'projectile-find-file)
+(evil-leader/set-key "t" 'projectile-find-file)
 (evil-leader/set-key "f" 'project-explorer-open)
 
 (require 'evil)

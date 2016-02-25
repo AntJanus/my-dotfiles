@@ -24,7 +24,7 @@
 (package-initialize)
 
 ;; packages
-(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode))
+(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode less-css-mode php-mode elm-mode))
 
 (require 'cl)
 
@@ -106,6 +106,15 @@
 ;; scss
 (require 'scss-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'". scss-mode))
+(add-to-list 'auto-mode-alist '("\\.sass\\'". scss-mode))
+
+;; less
+(require 'less-css-mode)
+(add-to-list 'auto-mode-alist '("\\.less\\'". less-css-mode))
+
+;; php mode
+(require 'php-mode)
+(add-to-list 'auto-mode-alist '("\\.php\\'". php-mode))
 
 ;; hooks
 (add-hook 'js-mode-hook 'js2-minor-mode)

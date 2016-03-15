@@ -24,7 +24,7 @@
 (package-initialize)
 
 ;; packages
-(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode less-css-mode php-mode elm-mode))
+(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode less-css-mode php-mode elm-mode tss typescript-mode minimap))
 
 (require 'cl)
 
@@ -116,6 +116,11 @@
 (require 'php-mode)
 (add-to-list 'auto-mode-alist '("\\.php\\'". php-mode))
 
+;; typescript mode
+(require 'typescript)
+(add-to-list 'auto-mode-alist '("\\.ts\\'". typescript-mode))
+(tss-config-default)
+
 ;; hooks
 (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
@@ -154,4 +159,3 @@
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-

@@ -1,13 +1,16 @@
 set nocompatible
 filetype off
 
+set term=xterm
 set t_Co=256
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" let Vundle manage Vundle " required!  Plugin 'gmarik/Vundle.vim'
+" let Vundle manage Vundle
+ " required!
+ Plugin 'gmarik/Vundle.vim'
 
  " My Plugins here:
  "
@@ -67,19 +70,21 @@ let g:CommandTMaxHeight = 30
 let g:CommandTMaxFiles = 500000
 
 " CtrlP settings
-let g:ctrlp_custom_ignore= &wildignore . '*/.git/*,*/.hg/*,*/.svn/*,*/bower_components/*,*/node_modules/*'
-
+" 
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-
-
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']  " Windows
 
 " Syntastic
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['']
 
-let g:syntastic_check_on_open = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
@@ -103,6 +108,7 @@ set backspace=indent,eol,start
 set laststatus=2
 " set relativenumber
 set cursorline
+
 
 let mapleader = ","
 
@@ -174,41 +180,37 @@ let g:airline_powerline_fonts=1
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.txt set filetype=markdown
-autocmd BufRead,BufNewFile *.module set filetype=php
-autocmd BufRead,BufNewFile *.install set filetype=php
-autocmd BufRead,BufNewFile *.test set filetype=php
-autocmd BufRead,BufNewFile *.inc set filetype=php
-autocmd BufRead,BufNewFile *.profile set filetype=php
-autocmd BufRead,BufNewFile *.view set filetype=php
-autocmd BufNewFile,BufRead *.less set filetype=less
-autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
-autocmd BufRead,BufNewFile *.ts set ft=typescript syntax=typescript
-autocmd BufRead,BufNewFile *.es6 set ft=javascript syntax=javascript
-autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
-autocmd BufRead,BufNewFile *.twig set ft=htmldjango
-autocmd BufRead,BufNewFile *.rabl set ft=ruby
-autocmd BufRead,BufNewFile *.jade set ft=jade
-
-" Neocomplete filebased completion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup file_types
+    autocmd!
+    autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.txt set filetype=markdown
+    autocmd BufRead,BufNewFile *.module set filetype=php
+    autocmd BufRead,BufNewFile *.install set filetype=php
+    autocmd BufRead,BufNewFile *.test set filetype=php
+    autocmd BufRead,BufNewFile *.inc set filetype=php
+    autocmd BufRead,BufNewFile *.profile set filetype=php
+    autocmd BufRead,BufNewFile *.view set filetype=php
+    autocmd BufNewFile,BufRead *.less set filetype=less
+    autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
+    autocmd BufRead,BufNewFile *.ts set ft=typescript syntax=typescript
+    autocmd BufRead,BufNewFile *.es6 set ft=javascript syntax=javascript
+    autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
+    autocmd BufRead,BufNewFile *.twig set ft=htmldjango
+    autocmd BufRead,BufNewFile *.rabl set ft=ruby
+    autocmd BufRead,BufNewFile *.jade set ft=jade
+augroup END
 
 " Whitespace fixes
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 augroup whitespace
- autocmd!
- autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
- autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
- autocmd InsertLeave * match ExtraWhitespace /\s\+$/
- autocmd BufWinLeave * call clearmatches()
+    autocmd!
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
 augroup END
 
 set undolevels=20
@@ -258,11 +260,6 @@ inoremap <right> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
 
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-
-" Always show statusline
-set laststatus=2
-
 set fileformat=unix
 set fileformats=unix,dos
 
@@ -272,9 +269,3 @@ set fileformats=unix,dos
     "autocmd FileType html :iabbrev <buffer> --- &mdash;
     "autocmd FileType javascript :iabbrev <buffer> ret return
 "augroup END
-set timeout
-set ttimeout
-set ttimeoutlen=0
-
-set matchtime=0
-

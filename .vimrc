@@ -26,7 +26,7 @@ call vundle#begin()
  Plugin 'groenewege/vim-less'
  Plugin 'editorconfig-vim'
  Plugin 'bling/vim-airline'
- Plugin 'airblade/vim-gitgutter'
+ " Plugin 'airblade/vim-gitgutter'
  Plugin 'kien/ctrlp.vim'
  " vim-scripts repos
  " Plugin 'L9'
@@ -38,7 +38,7 @@ call vundle#begin()
  Plugin 'pangloss/vim-javascript'
  Plugin 'mxw/vim-jsx'
  Plugin 'leafgarland/typescript-vim'
- Plugin 'Valloric/YouCompleteMe'
+ " Plugin 'Valloric/YouCompleteMe'
  Plugin 'ternjs/tern_for_vim'
  " non github repos
  " Plugin 'git://git.wincent.com/command-t.git'
@@ -70,7 +70,7 @@ let g:CommandTMaxHeight = 30
 let g:CommandTMaxFiles = 500000
 
 " CtrlP settings
-" 
+"
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']  " Windows
@@ -109,6 +109,9 @@ set laststatus=2
 " set relativenumber
 set cursorline
 
+" windows conemu fix
+inoremap <Char-0x07F> <BS>
+nnoremap <Char-0x07F> <BS>
 
 let mapleader = ","
 

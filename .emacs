@@ -24,8 +24,7 @@
 (package-initialize)
 
 ;; packages
-(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode less-css-mode php-mode elm-mode tss typescript-mode minimap))
-
+(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode less-css-mode php-mode elm-mode tss typescript-mode minimap tabbar))
 (require 'cl)
 
 (setq pkgs-to-install
@@ -143,6 +142,11 @@
 ;; project explorer
 (require 'project-explorer)
 
+;; tabbar
+(require 'tabbar)
+(global-set-key [M-left] 'tabbar-backward-tab)
+(global-set-key [M-right] 'tabbar-forward-tab)
+
 ;; evil mode
 (require 'evil-leader)
 (global-evil-leader-mode)
@@ -151,6 +155,9 @@
 (evil-leader/set-key "v" 'split-window-right)
 (evil-leader/set-key "t" 'projectile-find-file)
 (evil-leader/set-key "f" 'project-explorer-open)
+(evil-leader/set-key "e" 'flycheck-list-errors)
+(evil-leader/set-key "m" 'minimap-mode)
+(evil-leader/set-key "b" 'tabbar-mode)
 
 (require 'evil)
 (evil-mode 1)
@@ -159,3 +166,4 @@
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+(put 'dired-find-alternate-file 'disabled nil)

@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("e9776d12e4ccb722a2a732c6e80423331bcb93f02e089ba2a4b02e85de1cf00e" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" default))))
+ '(custom-safe-themes (quote ("58c6711a3b568437bab07a30385d34aacf64156cc5137ea20e799984f4227265" "19ba41b6dc0b5dd34e1b8628ad7ae47deb19f968fe8c31853d64ea8c4df252b8" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "ad950f1b1bf65682e390f3547d479fd35d8c66cafa2b8aa28179d78122faa947" "72a81c54c97b9e5efcc3ea214382615649ebb539cb4f2fe3a46cd12af72c7607" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" "e9776d12e4ccb722a2a732c6e80423331bcb93f02e089ba2a4b02e85de1cf00e" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -24,7 +24,8 @@
 (package-initialize)
 
 ;; packages
-(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile badwolf-theme editorconfig scss-mode less-css-mode php-mode elm-mode tss typescript-mode minimap tabbar))
+(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile editorconfig scss-mode less-css-mode php-mode elm-mode tss typescript-mode tabbar minimap indent-guide underwater-theme ample-theme))
+
 (require 'cl)
 
 (setq pkgs-to-install
@@ -126,7 +127,7 @@
 (setq js2-highlight-level 3)
 
 ;; set theme
-(load-theme 'badwolf t)
+(load-theme 'graham t)
 (powerline-evil-vim-color-theme)
 (display-time-mode t)
 (global-linum-mode)
@@ -147,6 +148,10 @@
 (global-set-key [M-left] 'tabbar-backward-tab)
 (global-set-key [M-right] 'tabbar-forward-tab)
 
+;; indent guide
+(require 'indent-guide)
+(indent-guide-global-mode)
+
 ;; evil mode
 (require 'evil-leader)
 (global-evil-leader-mode)
@@ -156,8 +161,8 @@
 (evil-leader/set-key "t" 'projectile-find-file)
 (evil-leader/set-key "f" 'project-explorer-open)
 (evil-leader/set-key "e" 'flycheck-list-errors)
-(evil-leader/set-key "m" 'minimap-mode)
 (evil-leader/set-key "b" 'tabbar-mode)
+(evil-leader/set-key "m" 'minimap-mode)
 
 (require 'evil)
 (evil-mode 1)

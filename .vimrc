@@ -89,9 +89,9 @@ let g:syntastic_check_on_wq = 0
 
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
-set tabstop=4
+set tabstop=2
+set softtabstop=2
 set shiftwidth=4
-set softtabstop=4
 set expandtab
 
 set encoding=utf-8
@@ -106,7 +106,7 @@ set visualbell
 set ttyfast
 set backspace=indent,eol,start
 set laststatus=2
-" set relativenumber
+set number
 set cursorline
 
 " windows conemu fix
@@ -115,8 +115,14 @@ nnoremap <Char-0x07F> <BS>
 
 let mapleader = ","
 
-"Custom settings
-set nofoldenable    " disable folding
+"Folding
+set foldenable    " disable folding
+set foldnestmax=10
+set foldmethod=indent
+
+" open and close folds
+nnoremap <space> za
+
 let g:vim_markdown_folding_disabled=1
 
 " search remap
@@ -128,8 +134,12 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
+
 " clear search
-nnoremap <leader><space> :noh<cr>
+nnoremap <leader><space> :nohlsearch<cr>
+
+" highlight last inserted text
+nnoremap vG `[v`]
 
 " match the next brace
 nnoremap <tab> %

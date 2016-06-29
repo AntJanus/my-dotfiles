@@ -34,6 +34,7 @@ call vundle#begin()
  Plugin 'scrooloose/syntastic'
  Plugin 'digitaltoad/vim-jade'
  Plugin 'Tabular'
+ Plugin 'pangloss/vim-javascript'
  "Plugin 'Shougo/neocomplete.vim'
  " Plugin 'Neocomplete'
  " non github repos
@@ -68,6 +69,11 @@ noremap <Up> gk
 " copy
 vnoremap <C-c> "*y
 
+" CtrlP settings
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_user_comman = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
+
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -89,6 +95,13 @@ set laststatus=2
 set cursorline
 
 let mapleader = ","
+
+" folding
+set foldenable
+set foldnestmax=3
+set foldmethod=indent
+
+nnoremap <space> za
 
 " search remap
 nnoremap / /\v

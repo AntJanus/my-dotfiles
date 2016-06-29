@@ -96,13 +96,6 @@ set cursorline
 
 let mapleader = ","
 
-" folding
-set foldenable
-set foldnestmax=3
-set foldmethod=indent
-
-nnoremap <space> za
-
 " search remap
 nnoremap / /\v
 vnoremap / /\v

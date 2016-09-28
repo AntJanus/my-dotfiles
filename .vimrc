@@ -16,6 +16,7 @@ call vundle#begin()
  "
  " original repos on github
  Plugin 'tpope/vim-fugitive'
+ Plugin 'jacoborus/tender'
 " Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim'}
 " Plugin 'tpope/vim-rails.git'
@@ -87,6 +88,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+" Tender
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+colorscheme tender
+
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
 set tabstop=2
@@ -122,6 +130,7 @@ set foldmethod=indent
 
 " open and close folds
 nnoremap <space> za
+nnoremap <space>o zA
 
 let g:vim_markdown_folding_disabled=1
 
@@ -190,6 +199,7 @@ let g:badwolf_html_link_underline = 1
 " Airline settings
 let g:airline#extensions#tabline#enabled =1
 let g:airline_powerline_fonts=1
+let g:airline_theme = 'tender'
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 

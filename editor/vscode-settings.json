@@ -1,0 +1,29 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "workbench.showEditorTabs": true,
+
+  "editor.fontFamily": "'Fira Code', Consolas, monospace",
+
+  "editor.fontSize": 15,
+
+  "editor.tabSize": 2,
+
+  "editor.wordWrap": true,
+
+  "editor.wrappingColumn": 0,
+
+  "editor.mouseWheelZoom": true,
+
+  "editor.fontLigatures": true,
+
+  "editor.renderIndentGuides": true,
+
+  "files.trimTrailingWhitespace": true,
+
+  "eslint.enable": true,
+
+  "vsicons.icons": "/Users/WAJan/Programs/icons.zip",
+
+  "typescript.check.tscVersion": true
+
+}

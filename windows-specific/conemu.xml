@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2016-06-29 11:20:19" build="160619">
+		<key name=".Vanilla" modified="2016-10-10 09:45:55" build="161002">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -91,6 +91,7 @@
 			<value name="SaveCmdHistory" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
 				<line data="{Bash::CygWin bash}"/>
+				<line data="{Ubuntu Bash}"/>
 				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{Shells::PowerShell (Admin)}"/>
 				<line data="powershell.exe"/>
@@ -122,10 +123,10 @@
 			<value name="Multi.SplitWidth" type="hex" data="04"/>
 			<value name="Multi.SplitHeight" type="hex" data="04"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
-			<value name="FontName" type="string" data="Sauce Code Powerline"/>
-			<value name="FontName2" type="string" data="Consolas"/>
+			<value name="FontName" type="string" data="Fira Code"/>
+			<value name="FontName2" type="string" data="Fira Code"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
-			<value name="FontSize" type="ulong" data="14"/>
+			<value name="FontSize" type="ulong" data="16"/>
 			<value name="FontSizeX" type="ulong" data="0"/>
 			<value name="FontUseDpi" type="hex" data="01"/>
 			<value name="FontUseUnits" type="hex" data="01"/>
@@ -135,7 +136,7 @@
 			<value name="Anti-aliasing" type="ulong" data="6"/>
 			<value name="FontBold" type="hex" data="00"/>
 			<value name="FontItalic" type="hex" data="00"/>
-			<value name="Monospace" type="hex" data="01"/>
+			<value name="Monospace" type="hex" data="00"/>
 			<value name="BackGround Image show" type="hex" data="00"/>
 			<value name="BackGround Image" type="string" data="c:\back.bmp"/>
 			<value name="bgImageDarker" type="hex" data="ff"/>
@@ -153,11 +154,11 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd X" type="long" data="960"/>
+			<value name="ConWnd X" type="long" data="954"/>
 			<value name="ConWnd Y" type="long" data="0"/>
 			<value name="LastMonitor" type="string" data="0,0,1920,1040"/>
-			<value name="ConWnd Width" type="dword" data="00000074"/>
-			<value name="ConWnd Height" type="dword" data="00000037"/>
+			<value name="ConWnd Width" type="dword" data="0000005d"/>
+			<value name="ConWnd Height" type="dword" data="00000033"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="QuakeStyle" type="hex" data="00"/>
 			<value name="Restore2ActiveMon" type="hex" data="00"/>
@@ -398,11 +399,11 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="HotKeys" modified="2016-06-29 11:20:19" build="160619">
+			<key name="HotKeys" modified="2016-10-10 09:45:55" build="161002">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
-				<value name="MinimizeRestore" type="dword" data="000011c0"/>
+				<value name="MinimizeRestore" type="dword" data="00000000"/>
 				<value name="MinimizeRestore2" type="dword" data="00000000"/>
 				<value name="GlobalRestore" type="dword" data="00000000"/>
 				<value name="CdExplorerPath" type="dword" data="00000000"/>
@@ -422,8 +423,8 @@
 				<value name="Multi.NewSplitH" type="dword" data="00101145"/>
 				<value name="Multi.SplitMaximize" type="dword" data="00005d0d"/>
 				<value name="Multi.SplitSizeVU" type="dword" data="00105d26"/>
-				<value name="Multi.SplitSizeVD" type="dword" data="0010114b"/>
-				<value name="Multi.SplitSizeHL" type="dword" data="00105d48"/>
+				<value name="Multi.SplitSizeVD" type="dword" data="00105d28"/>
+				<value name="Multi.SplitSizeHL" type="dword" data="00105d25"/>
 				<value name="Multi.SplitSizeHR" type="dword" data="00105d27"/>
 				<value name="Key.TabPane1" type="dword" data="00005d09"/>
 				<value name="Key.TabPane2" type="dword" data="00105d09"/>
@@ -583,9 +584,9 @@
 				<value name="DndRKey" type="hex" data="a2"/>
 				<value name="WndDragKey" type="dword" data="00121101"/>
 			</key>
-			<key name="Tasks" modified="2016-06-29 11:20:19" build="160619">
-				<value name="Count" type="long" data="13"/>
-				<key name="Task1" modified="2016-06-29 11:20:19" build="160619">
+			<key name="Tasks" modified="2016-10-10 09:45:55" build="161002">
+				<value name="Count" type="long" data="14"/>
+				<key name="Task1" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Far}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -594,7 +595,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task2" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task2" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Shells::cmd}"/>
 					<value name="Flags" type="dword" data="00000002"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -603,7 +604,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task3" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task3" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Shells::cmd (Admin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -612,7 +613,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task4" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task4" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Shells::cmd-32}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -621,7 +622,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task5" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task5" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Shells::cmd 64/32}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -631,7 +632,7 @@
 					<value name="Active" type="long" data="1"/>
 					<value name="Count" type="long" data="2"/>
 				</key>
-				<key name="Task6" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task6" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Shells::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -640,7 +641,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task7" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task7" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Shells::PowerShell (Admin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -649,7 +650,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task8" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task8" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Bash::CygWin bash}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -658,7 +659,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task9" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task9" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Bash::Git bash}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -667,7 +668,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task10" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task10" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Helper::Show ANSI colors}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -676,7 +677,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task11" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task11" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{SDK::VS 14.0 x86 tools prompt}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -685,7 +686,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task12" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task12" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Tools::Chocolatey (Admin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -694,7 +695,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task13" modified="2016-06-29 11:20:19" build="160619">
+				<key name="Task13" modified="2016-10-10 09:45:55" build="161002">
 					<value name="Name" type="string" data="{Writing}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -703,11 +704,20 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
+				<key name="Task14" modified="2016-10-10 09:45:55" build="161002">
+					<value name="Name" type="string" data="{Ubuntu Bash}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Cmd1" type="string" data="bash.exe"/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+				</key>
 			</key>
-			<key name="Apps" modified="2016-06-29 11:20:19" build="160619">
+			<key name="Apps" modified="2016-10-10 09:45:55" build="161002">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2016-06-29 11:20:19" build="160619">
+			<key name="Colors" modified="2016-10-10 09:45:55" build="161002">
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="VividColors" type="hex" data="01"/>
@@ -720,6 +730,8 @@
 			<value name="JumpListAutoUpdate" type="hex" data="01"/>
 			<value name="UseAltGrayPlus" type="hex" data="01"/>
 			<value name="MouseDragWindow" type="hex" data="01"/>
+			<value name="KillSshAgent" type="hex" data="01"/>
+			<value name="CompressLongStrings" type="hex" data="01"/>
 		</key>
 	</key>
 </key>

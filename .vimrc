@@ -88,13 +88,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" Tender
-if (has("termguicolors"))
-  set termguicolors
-endif
-
-colorscheme tender
-
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
 set tabstop=2
@@ -116,10 +109,6 @@ set backspace=indent,eol,start
 set laststatus=2
 set number
 set cursorline
-
-" windows conemu fix
-inoremap <Char-0x07F> <BS>
-nnoremap <Char-0x07F> <BS>
 
 let mapleader = ","
 
@@ -292,3 +281,43 @@ set fileformats=unix,dos
     "autocmd FileType html :iabbrev <buffer> --- &mdash;
     "autocmd FileType javascript :iabbrev <buffer> ret return
 "augroup END
+"
+"ConEmu settings
+
+if !empty($CONEMUBUILD)
+  set termencoding=utf8
+  set term=xterm
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm"
+  let &t_AF="\e[38;5;%dm"
+
+  " set codes for dynamic cursor type with vim modes
+  let &t_te="\e[0 q"
+  let &t_ti="\e[1 q"
+  let &t_EI="\e[1 q"
+  let &t_SI="\e[5 q"
+  let &t_SR="\e[3 q"
+
+  " fix broken backspace
+  inoremap <Char-0x07F> <BS>
+  nnoremap <Char-0x07F> <BS>
+
+  "scrollwheel
+  inoremap <Esc>[62~ <C-X><C-E>
+  inoremap <Esc>[63~ <C-X><C-Y>
+  nnoremap <Esc>[62~ <C-E>
+  nnoremap <Esc>[63~ <C-Y>
+
+  "fancy airline stuff
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+
+endif
+
+" Tender
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+colorscheme tender

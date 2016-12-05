@@ -16,12 +16,16 @@ call vundle#begin()
  "
  " original repos on github
  Plugin 'tpope/vim-fugitive'
- Plugin 'jacoborus/tender'
 " Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim'}
 " Plugin 'tpope/vim-rails.git'
 " Plugin 'ack.vim'
+
+ " themes
  Plugin 'sjl/badwolf'
+ Plugin 'jacoborus/tender'
+ Plugin 'whatyouhide/vim-gotham'
+
  Plugin 'plasticboy/vim-markdown'
  Plugin 'jtratner/vim-flavored-markdown'
  Plugin 'groenewege/vim-less'
@@ -320,4 +324,4 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme tender
+colorscheme gotham256

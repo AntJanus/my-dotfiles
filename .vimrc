@@ -5,6 +5,9 @@ set term=xterm
 set t_Co=256
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
+inoremap <Char-0x07F> <BS>
+nnoremap <Char-0x07F> <BS>
+set backspace=indent,eol,start
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -22,11 +25,13 @@ call vundle#begin()
 " Plugin 'ack.vim'
 
  " themes
+ Plugin 'w0rp/ale'
  Plugin 'sjl/badwolf'
  Plugin 'jacoborus/tender'
  Plugin 'whatyouhide/vim-gotham'
+ Plugin 'morhetz/gruvbox'
 
- Plugin 'plasticboy/vim-markdown'
+ Plugin 'tpope/vim-markdown'
  Plugin 'jtratner/vim-flavored-markdown'
  Plugin 'groenewege/vim-less'
  Plugin 'editorconfig-vim'
@@ -38,13 +43,12 @@ call vundle#begin()
  " Plugin 'FuzzyFinder'
  Plugin 'scrooloose/NERDTree'
  Plugin 'scrooloose/NERDCommenter'
- Plugin 'scrooloose/syntastic'
+ " Plugin 'scrooloose/syntastic'
  Plugin 'Tabular'
  Plugin 'pangloss/vim-javascript'
  Plugin 'mxw/vim-jsx'
  Plugin 'leafgarland/typescript-vim'
- " Plugin 'Valloric/YouCompleteMe'
- Plugin 'ternjs/tern_for_vim'
+ Plugin 'fatih/vim-go'
  " non github repos
  " Plugin 'git://git.wincent.com/command-t.git'
  " ...
@@ -52,8 +56,12 @@ call vundle#end()            " required
 filetype plugin indent on     " required!
 
 set guifont       = "Menlo:12"
-let g:colors_name = "badwolf"
-set background    = "dark"
+let g:colors_name = "gruvbox"
+set background=dark
+
+if &term =~ '256color'
+  set t_ut=
+endif
 
 set modelines=0
 syntax enable
@@ -67,12 +75,8 @@ noremap <Up> gk
 " copy
 vnoremap <C-c> "*y
 
-" Command T settings
-let g:CommandTInputDebounce = 200
-let g:CommandTFileScanner = "watchman"
-let g:CommandTWildIgnore = &wildignore . ",**/bower_components/*" . ",**/node_modules/*" . ",**/vendor/*"
-let g:CommandTMaxHeight = 30
-let g:CommandTMaxFiles = 500000
+" Ale
+let g:ale_completion_enabled = 1
 
 " CtrlP settings
 "
@@ -80,17 +84,20 @@ let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']  " Windows
 
-" Syntastic
-let g:syntastic_javascript_checkers = ['']
+" ALE
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{ALEGetStatusLine()}
 set statusline+=%*
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" Syntastic
+" let g:syntastic_javascript_checkers = ['']
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
 
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
@@ -109,7 +116,6 @@ set wildmenu
 set wildmode=list:longest,full
 set visualbell
 set ttyfast
-set backspace=indent,eol,start
 set laststatus=2
 set number
 set cursorline
@@ -302,10 +308,6 @@ if !empty($CONEMUBUILD)
   let &t_SI="\e[5 q"
   let &t_SR="\e[3 q"
 
-  " fix broken backspace
-  inoremap <Char-0x07F> <BS>
-  nnoremap <Char-0x07F> <BS>
-
   "scrollwheel
   inoremap <Esc>[62~ <C-X><C-E>
   inoremap <Esc>[63~ <C-X><C-Y>
@@ -324,4 +326,5 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme gotham256
+" Go
+let g:go_fmt_autosave = 0

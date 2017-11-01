@@ -24,7 +24,7 @@
 (package-initialize)
 
 ;; packages
-(setq required-pkgs '(better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile editorconfig scss-mode less-css-mode php-mode elm-mode tss typescript-mode tabbar minimap indent-guide underwater-theme ample-theme))
+(setq required-pkgs '(go-mode go-autocomplete org better-defaults web-mode markdown-mode js2-mode json-mode ac-js2 auto-complete yasnippet sublime-themes flycheck flycheck-pos-tip powerline evil powerline-evil evil-leader project-explorer projectile editorconfig scss-mode less-css-mode php-mode elm-mode tss typescript-mode tabbar minimap indent-guide underwater-theme ample-theme neotree exec-path-from-shell))
 
 (require 'cl)
 
@@ -152,6 +152,9 @@
 (require 'indent-guide)
 (indent-guide-global-mode)
 
+;; neotree
+(require 'neotree)
+
 ;; evil mode
 (require 'evil-leader)
 (global-evil-leader-mode)
@@ -163,6 +166,7 @@
 (evil-leader/set-key "e" 'flycheck-list-errors)
 (evil-leader/set-key "b" 'tabbar-mode)
 (evil-leader/set-key "m" 'minimap-mode)
+(evil-leader/set-key "d" 'neotree-toggle)
 
 (require 'evil)
 (evil-mode 1)
@@ -172,3 +176,35 @@
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 (put 'dired-find-alternate-file 'disabled nil)
+
+(when (window-system)
+  (set-default-font "Fira Code"))
+(let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
+               (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
+               (36 . ".\\(?:>\\)")
+               (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
+               (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
+               (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
+               (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
+               (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
+               (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
+               (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
+               (48 . ".\\(?:x[a-zA-Z]\\)")
+               (58 . ".\\(?:::\\|[:=]\\)")
+               (59 . ".\\(?:;;\\|;\\)")
+               (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
+               (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
+               (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
+               (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
+               (91 . ".\\(?:]\\)")
+               (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
+               (94 . ".\\(?:=\\)")
+               (119 . ".\\(?:ww\\)")
+               (123 . ".\\(?:-\\)")
+               (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
+               (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
+               )
+             ))
+  (dolist (char-regexp alist)
+    (set-char-table-range composition-function-table (car char-regexp)
+                          `([,(cdr char-regexp) 0 font-shape-gstring]))))

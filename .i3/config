@@ -20,6 +20,9 @@ set $base0F #a3685a
 
 # Font
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:Fira Code iScript 10
+font pango:FontAwesome5Free 10
+font pango:FontAwesome5Brands 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -88,13 +91,13 @@ bindsym $mod+a focus parent
 # focus the child container
 
 # Name the workspaces
-set $tag1 "1: Code"
-set $tag2 "2: Chat"
-set $tag3 "3: Browser"
-set $tag4 "4:"
+set $tag1 "1:"
+set $tag2 "2:"
+set $tag3 "3:"
+set $tag4 "4:"
 set $tag5 "5: nethack"
-set $tag6 "6:"
-set $tag7 "7: settings"
+set $tag6 "6:"
+set $tag7 "7:"
 
 # switch to workspace
 bindsym $mod+1 workspace number $tag1
@@ -115,7 +118,7 @@ bindsym $mod+Shift+3 move container to workspace number $tag3
 bindsym $mod+Shift+4 move container to workspace number $tag4
 bindsym $mod+Shift+5 move container to workspace number $tag5
 bindsym $mod+Shift+6 move container to workspace number $tag6
-bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+7 move container to workspace number $tag7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
@@ -199,7 +202,7 @@ bar {
 		workspace_buttons yes
 		status_command i3status
     position top
-    tray_output all
+		font pango:Fira Code iScript, FontAwesome5Free, FontAwesome5Brands 10
 
     colors {
         background $base00

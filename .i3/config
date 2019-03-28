@@ -95,7 +95,7 @@ set $tag1 "1:"
 set $tag2 "2:"
 set $tag3 "3:"
 set $tag4 "4:"
-set $tag5 "5: nethack"
+set $tag5 "5:"
 set $tag6 "6:"
 set $tag7 "7:"
 
@@ -275,8 +275,8 @@ client.background       $base07
 #}
 
 # Startup
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id conky -c ~/.conkyrc
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id killall conky && conky -c ~/.conkyrc
 
 exec xbacklight -set 15
 exec xbindkeys

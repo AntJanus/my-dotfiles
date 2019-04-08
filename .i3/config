@@ -1,28 +1,18 @@
 set $mod Mod4
 
 # Colors
-set $base00 #1d1f21
-set $base01 #282a2e
-set $base02 #373b41
-set $base03 #969896
-set $base04 #b4b7b4
-set $base05 #c5c8c6
-set $base06 #e0e0e0
-set $base07 #ffffff
-set $base08 #cc6666
-set $base09 #de935f
-set $base0A #f0c674
-set $base0B #b5bd68
-set $base0C #8abeb7
-set $base0D #81a2be
-set $base0E #b294bb
-set $base0F #a3685a
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f353f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
 
 # Font
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Fira Code iScript 10
-font pango:FontAwesome5Free 10
-font pango:FontAwesome5Brands 10
+font pango:System Fira Code iScript Display 10
+
+# Thin borders
+hide_edge_borders both
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -33,8 +23,12 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# screenshot
+bindsym Print exec xfce4-screenshooter
+bindsym $mod+p exec xfce4-screenshooter
+
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show combi
+bindsym $mod+d exec rofi -show combi -lines 5 -eh 2 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Fira Code iScript 13"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -95,9 +89,11 @@ set $tag1 "1:"
 set $tag2 "2:"
 set $tag3 "3:"
 set $tag4 "4:"
-set $tag5 "5:"
+set $tag5 "5:"
 set $tag6 "6:"
 set $tag7 "7:"
+set $tag8 "8: "
+set $tag9 "9:"
 
 # switch to workspace
 bindsym $mod+1 workspace number $tag1
@@ -107,8 +103,8 @@ bindsym $mod+4 workspace number $tag4
 bindsym $mod+5 workspace number $tag5
 bindsym $mod+6 workspace number $tag6
 bindsym $mod+7 workspace number $tag7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+8 workspace number $tag8
+bindsym $mod+9 workspace number $tag9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
@@ -119,8 +115,8 @@ bindsym $mod+Shift+4 move container to workspace number $tag4
 bindsym $mod+Shift+5 move container to workspace number $tag5
 bindsym $mod+Shift+6 move container to workspace number $tag6
 bindsym $mod+Shift+7 move container to workspace number $tag7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+8 move container to workspace number $tag8
+bindsym $mod+Shift+9 move container to workspace number $tag9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # Application assignments
@@ -204,6 +200,15 @@ bindsym $mod+r mode "resize"
 #	workspace_buttons yes
 #	status_command i3status
 #}
+#
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color #00ff00
+
 bar {
 		position top
 		workspace_buttons yes
@@ -212,29 +217,16 @@ bar {
 		font pango:Fira Code iScript, FontAwesome5Free, FontAwesome5Brands 10
 
     colors {
-        background $base00
-        separator  $base01
-        statusline $base04
-        # State             Border  BG      Text
-        focused_workspace   $base05 $base0D $base00
-        active_workspace    $base05 $base03 $base00
-        inactive_workspace  $base03 $base01 $base05
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base00 $base0A $base00
+				background $bg-color
+	    	separator #757575
+
+				#                  border             background         text
+				focused_workspace  $bg-color          $bg-color          $text-color
+				inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+				urgent_workspace   $urgent-bg-color $urgent-bg-color $text-color
     }
 }
 
-
-
-# i3 colors
-# Basic color configuration using the Base16 variables for windows and borders.
-# Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base05 $base0D $base00 $base0D $base0D
-client.focused_inactive $base01 $base01 $base05 $base03 $base01
-client.unfocused        $base01 $base00 $base05 $base01 $base01
-client.urgent           $base08 $base08 $base00 $base08 $base08
-client.placeholder      $base00 $base00 $base05 $base00 $base00
-client.background       $base07
 
 # i3 gaps specific stuff
 #for_window [class="^.*"] border pixel 0
@@ -283,7 +275,7 @@ client.background       $base07
 
 # Startup
 exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id killall conky && conky -c ~/.conkyrc
+exec_always --no-startup-id killall conky; conky -c ~/.conkyrc
 
 exec xbacklight -set 15
 exec xbindkeys

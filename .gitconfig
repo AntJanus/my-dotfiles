@@ -1,5 +1,6 @@
 [alias]
-
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+	amend = commit --amend --reuse-message HEAD
 [apply]
 	whitespace = fix
 [core]
@@ -27,3 +28,8 @@
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
 [merge]
+[user]
+	email = antonin@antjanus.com
+	name = Antonin Januska
+[push]
+	default = simple

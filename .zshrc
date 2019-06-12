@@ -99,6 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lmk="notify-send 'Something happened!'"
 alias cat="bat"
+alias open="xdg-open &>/dev/null"
 
 source /home/antonin/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

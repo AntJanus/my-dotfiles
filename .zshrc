@@ -99,7 +99,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lmk="notify-send 'Something happened!'"
 alias cat="bat"
+alias ls="lsd"
 alias open="xdg-open &>/dev/null"
+alias git-branch="git branch | sed -n -e 's/^\* \(.*\)/\1/p'"
+alias git-up="git branch | sed -n -e 's/^\* \(.*\)/\1/p' | xargs git push -u origin "
 
 source /home/antonin/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

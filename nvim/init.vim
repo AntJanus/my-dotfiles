@@ -8,6 +8,8 @@ let &t_AF="\e[38;5;%dm"
 inoremap <Char-0x07F> <BS>
 nnoremap <Char-0x07F> <BS>
 set backspace=indent,eol,start
+set swapfile
+set dir=~/.swap-files
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -36,6 +38,7 @@ call vundle#begin()
  Plugin 'pangloss/vim-javascript'
  Plugin 'mxw/vim-jsx'
  Plugin 'leafgarland/typescript-vim'
+ Plugin 'cespare/vim-toml'
 
 call vundle#end()            " required
 filetype plugin indent on     " required!
@@ -65,6 +68,7 @@ let g:ale_completion_enabled = 1
 let g:ale_linters={'javascript': ['prettier']}
 let g:deoplete#enable_at_startup=1
 let g:deoplete#sources={'_': ['ale']}
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 
 " CtrlP settings

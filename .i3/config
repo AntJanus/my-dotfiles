@@ -13,7 +13,6 @@ font pango:System Fira Code iScript Display 10
 
 # Thin borders
 hide_edge_borders both
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -24,8 +23,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # screenshot
-bindsym Print exec xfce4-screenshooter
-bindsym $mod+p exec xfce4-screenshooter
+bindsym Print exec gnome-screenshot -i
+bindsym $mod+p exec gnome-screenshot -i
 
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show combi -lines 5 -eh 2 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Fira Code iScript 13"
@@ -148,12 +147,15 @@ bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
 
 # to set the backlight button
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+# set backlight button for keyboard (CM Storm)
+bindsym Scroll_Lock exec ~/.config/i3/keyboard_lights.sh
+
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
+# bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -226,7 +228,6 @@ bar {
     }
 }
 
-
 # i3 gaps specific stuff
 #for_window [class="^.*"] border pixel 0
 #smart_gaps on
@@ -276,5 +277,11 @@ bar {
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id killall conky; conky -c ~/.conkyrc
 
-exec xbacklight -set 15
-exec xbindkeys
+# exec xbacklight -set 15
+# exec xbindkeys
+
+# Gnome stuff
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id gnome-power-manager
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id gnome-flashback

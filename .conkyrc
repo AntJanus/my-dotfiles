@@ -38,9 +38,9 @@ conky.config = {
     draw_outline = false,
     draw_shades = false,
     use_xft = true,
-    font = 'DejaVu Sans Mono:size=12',
-    gap_x = 5,
-    gap_y = 30,
+    font = 'FiraCodeIScript:size=12',
+    gap_x = 15,
+    gap_y = 15,
     minimum_height = 5,
 	minimum_width = 5,
     net_avg_samples = 2,
@@ -60,16 +60,17 @@ conky.config = {
 }
 
 conky.text = [[
-${color darkgrey} $nodename - $sysname $kernel on $machine
+${color darkgrey} $nodename - $sysname
 $hr
-${color darkgrey}Uptime:$color $uptime
+${color darkgrey}CPU Temp: ${hwmon 1 temp 1}°C
+${color darkgrey}CPU Usage:$color $cpu% ${cpubar 4}
 ${color darkgrey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
 ${color darkgrey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
-${color darkgrey}CPU Usage:$color $cpu% ${cpubar 4}
 ${color darkgrey}Processes:$color $processes  ${color darkgrey}Running:$color $running_processes
 $hr
-${color darkgrey}File systems:
- $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+Battery
+Main   ${battery_percent BAT0}% ${battery_bar BAT0}
+Backup ${battery_percent BAT1}% ${battery_bar BAT1}
 $hr
 ${color darkgrey}Name              PID   CPU%   MEM%
 ${color darkgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}

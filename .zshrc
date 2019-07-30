@@ -68,7 +68,7 @@ ZSH_THEME="steeef"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract web-search git-extras docker)
+plugins=(git extract web-search git-extras docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,10 +101,10 @@ alias lmk="notify-send 'Something happened!'"
 alias cat="bat"
 alias ls="lsd"
 alias open="xdg-open &>/dev/null"
-alias git-branch="git branch | sed -n -e 's/^\* \(.*\)/\1/p'"
-alias git-up="git branch | sed -n -e 's/^\* \(.*\)/\1/p' | xargs git push -u origin "
+alias git-branch="git symbolic-ref --short HEAD"
+alias git-up="git symbolic-ref --short HEAD | xargs git push -u origin "
 
-source /home/antonin/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/antonin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # Exports
@@ -116,3 +116,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(direnv hook zsh)"
+export GPG_TTY=$(tty)

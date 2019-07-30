@@ -1,7 +1,8 @@
 [alias]
 	lg = log -1 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
-	amend = commit --amend --reuse-message HEAD
+	amend = commit --amend --no-edit
 	pf = push -f
+  current = symbolic-ref --short HEAD
 
 [apply]
 	whitespace = fix
@@ -33,5 +34,8 @@
 [user]
 	email = antonin@antjanus.com
 	name = Antonin Januska
+	signingkey = DC299F2031117BD2
 [push]
 	default = simple
+[commit]
+	gpgsign = true

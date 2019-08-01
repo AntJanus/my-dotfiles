@@ -29,6 +29,12 @@ bindsym $mod+p exec gnome-screenshot -i
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show combi -lines 5 -eh 2 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Fira Code iScript 13"
 
+# emoji picker
+bindsym $mod+slash exec "~/projects/my-dotfiles/splatmoji/splatmoji type"
+
+# power menu
+bindsym $mod+Escape exec "~/projects/my-dotfiles/utils/power-menu/power-menu.sh"
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -282,6 +288,5 @@ exec_always --no-startup-id killall conky; conky -c ~/.conkyrc
 
 # Gnome stuff
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec_always --no-startup-id gnome-power-manager
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-flashback

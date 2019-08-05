@@ -37,7 +37,8 @@ call vundle#begin()
  Plugin 'Tabular'
  Plugin 'pangloss/vim-javascript'
  Plugin 'mxw/vim-jsx'
- Plugin 'leafgarland/typescript-vim'
+ Plugin 'mhartington/nvim-typescript'
+ " Plugin 'leafgarland/typescript-vim'
  Plugin 'cespare/vim-toml'
  Plugin 'slashmili/alchemist.vim'
  Plugin 'elixir-editors/vim-elixir'
@@ -66,10 +67,18 @@ noremap <Up> gk
 vnoremap <C-c> "*y
 
 " Syntax checking and completion
-let g:ale_completion_enabled = 1
+
+" ALE settings
+" let g:ale_completion_enabled = 1
 let g:ale_linters={'javascript': ['prettier']}
+let g:ale_fixers={'javascript': ['prettier']}
+let g:ale_fix_on_save=1
+
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+
+" Deoplete settings
 let g:deoplete#enable_at_startup=1
-let g:deoplete#sources={'_': ['ale']}
+" let g:deoplete#sources={'_': ['ale']}
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 
@@ -77,9 +86,7 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 "
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']  " Windows
-
-" ALE
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
 
 set statusline+=%#warningmsg#
 set statusline+=%{ALEGetStatusLine()}
@@ -309,5 +316,5 @@ if (has("termguicolors"))
 endif
 
 " Go
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 

@@ -11,39 +11,34 @@ set backspace=indent,eol,start
 set swapfile
 set dir=~/.swap-files
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle
- " required!
- Plugin 'gmarik/Vundle.vim'
-
+call plug#begin('~/.local/share/nvim/plugged')
  " Git plugin
- Plugin 'tpope/vim-fugitive'
+ Plug 'tpope/vim-fugitive'
 
  " Syntax checker
- Plugin 'w0rp/ale'
- Plugin 'Shougo/deoplete.nvim'
+ Plug 'w0rp/ale'
+ Plug 'Shougo/deoplete.nvim'
 
  " themes
- Plugin 'whatyouhide/vim-gotham'
+ Plug 'whatyouhide/vim-gotham'
 
  " main plugins
- Plugin 'groenewege/vim-less'
- Plugin 'editorconfig-vim'
- Plugin 'bling/vim-airline'
- Plugin 'kien/ctrlp.vim'
- Plugin 'scrooloose/NERDTree'
- Plugin 'scrooloose/NERDCommenter'
- Plugin 'Tabular'
- Plugin 'pangloss/vim-javascript'
- Plugin 'mxw/vim-jsx'
- Plugin 'mhartington/nvim-typescript'
- " Plugin 'leafgarland/typescript-vim'
- Plugin 'cespare/vim-toml'
- Plugin 'slashmili/alchemist.vim'
- Plugin 'elixir-editors/vim-elixir'
+ Plug 'groenewege/vim-less'
+ Plug 'editorconfig/editorconfig-vim'
+ Plug 'bling/vim-airline'
+ Plug 'kien/ctrlp.vim'
+ Plug 'scrooloose/NERDTree'
+ Plug 'scrooloose/NERDCommenter'
+ Plug 'pangloss/vim-javascript'
+ Plug 'mxw/vim-jsx'
+ Plug 'HerringtonDarkholme/yats.vim'
+ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+ " Plug 'leafgarland/typescript-vim'
+ Plug 'cespare/vim-toml'
+ Plug 'slashmili/alchemist.vim'
+ Plug 'elixir-editors/vim-elixir'
+call plug#end()            " required
 
-call vundle#end()            " required
 filetype plugin indent on     " required!
 
 set guifont       = "Menlo:12"
@@ -231,13 +226,6 @@ set noerrorbells
 set noswapfile
 set nobackup
 nnoremap ; :
-
-
-" Tabular
-nnoremap <leader>a= :Tabularize /=<CR>
-vnoremap <leader>a= :Tabularize /=<CR>
-nnoremap <leader>a: :Tabularize /:\zs<CR>
-vnoremap <leader>a: :Tabularize /:\zs<CR>
 
 " Custom maps
 set pastetoggle=<leader>p

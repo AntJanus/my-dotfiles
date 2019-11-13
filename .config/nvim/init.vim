@@ -9,6 +9,13 @@ inoremap <Char-0x07F> <BS>
 nnoremap <Char-0x07F> <BS>
 set backspace=indent,eol,start
 set swapfile
+
+if &term =~ '256color'
+  set t_ut=
+endif
+
+let mapleader = ","
+
 set dir=~/.swap-files
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -26,7 +33,6 @@ call plug#begin('~/.local/share/nvim/plugged')
  Plug 'groenewege/vim-less'
  Plug 'editorconfig/editorconfig-vim'
  Plug 'bling/vim-airline'
- Plug 'kien/ctrlp.vim'
  Plug 'scrooloose/NERDTree'
  Plug 'scrooloose/NERDCommenter'
  Plug 'pangloss/vim-javascript'
@@ -37,17 +43,17 @@ call plug#begin('~/.local/share/nvim/plugged')
  Plug 'cespare/vim-toml'
  Plug 'slashmili/alchemist.vim'
  Plug 'elixir-editors/vim-elixir'
+
+ " Fuzzy search
+ Plug '/home/antonin/.fzf'
+ Plug 'junegunn/fzf.vim'
+
 call plug#end()            " required
 
 filetype plugin indent on     " required!
 
-set guifont       = "Menlo:12"
 let g:colors_name = "gotham"
 set background=dark
-
-if &term =~ '256color'
-  set t_ut=
-endif
 
 set modelines=0
 syntax enable
@@ -65,36 +71,23 @@ vnoremap <C-c> "*y
 
 " ALE settings
 " let g:ale_completion_enabled = 1
-let g:ale_linters={'javascript': ['prettier']}
-let g:ale_fixers={'javascript': ['prettier']}
+let g:ale_linters={'javascript': ['prettier'], 'elixir': ['mix_format']}
+let g:ale_fixers={'javascript': ['prettier'], 'elixir': ['mix_format']}
 let g:ale_fix_on_save=1
 
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 
 " Deoplete settings
 let g:deoplete#enable_at_startup=1
-" let g:deoplete#sources={'_': ['ale']}
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-
-" CtrlP settings
-"
-let g:ctrlp_map = '<leader>t'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
+" FZF settings
+nnoremap <leader>t :Files<CR>
 
 set statusline+=%#warningmsg#
 set statusline+=%{ALEGetStatusLine()}
 set statusline+=%*
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-
-" Syntastic
-" let g:syntastic_javascript_checkers = ['']
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
 
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
@@ -116,8 +109,6 @@ set ttyfast
 set laststatus=2
 set number
 set cursorline
-
-let mapleader = ","
 
 "Folding
 set foldenable    " disable folding
@@ -186,27 +177,6 @@ let g:airline_powerline_fonts=1
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 
-augroup file_types
-    autocmd!
-    autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
-    autocmd BufRead,BufNewFile *.txt set filetype=markdown
-    autocmd BufRead,BufNewFile *.module set filetype=php
-    autocmd BufRead,BufNewFile *.install set filetype=php
-    autocmd BufRead,BufNewFile *.test set filetype=php
-    autocmd BufRead,BufNewFile *.inc set filetype=php
-    autocmd BufRead,BufNewFile *.profile set filetype=php
-    autocmd BufRead,BufNewFile *.view set filetype=php
-    autocmd BufNewFile,BufRead *.less set filetype=less
-    autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
-    autocmd BufRead,BufNewFile *.ts set ft=typescript syntax=typescript
-    autocmd BufRead,BufNewFile *.es6 set ft=javascript syntax=javascript
-    autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
-    autocmd BufRead,BufNewFile *.twig set ft=htmldjango
-    autocmd BufRead,BufNewFile *.rabl set ft=ruby
-    autocmd BufRead,BufNewFile *.jade set ft=jade
-augroup END
-
 " Whitespace fixes
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -217,6 +187,13 @@ augroup whitespace
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
+augroup END
+
+augroup fzf
+  autocmd!
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
 
 set undolevels=20

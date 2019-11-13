@@ -68,7 +68,7 @@ ZSH_THEME="steeef"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract web-search git-extras docker docker-compose)
+plugins=(git extract web-search git-extras docker docker-compose command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,13 +99,23 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lmk="notify-send 'Something happened!'"
 alias cat="bat"
+alias grep="rg"
 alias ls="lsd"
 alias open="xdg-open &>/dev/null"
+
 alias git-branch="git symbolic-ref --short HEAD"
 alias git-up="git symbolic-ref --short HEAD | xargs git push -u origin "
 
-source /home/antonin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias killnode="fuser -n tcp -k 3000"
+alias killwebpack="fuser -n tcp -k 3001"
+alias kille2e="fuser -n tcp -k 3000 && fuser -n tcp -k 3001"
+alias pd="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
+alias pulldock="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
 
+# work aliases
+source /home/antonin/.work_aliases
+
+source /home/antonin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Exports
 NPM_TOKEN=""
@@ -117,3 +127,21 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(direnv hook zsh)"
 export GPG_TTY=$(tty)
+
+# KITTY SETUP
+# autoload -Uz compinit
+# compinit
+
+# Completion for kitty
+# kitty + complete setup zsh | source /dev/stdin
+
+# FZF fd
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash

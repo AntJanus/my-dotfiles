@@ -16,6 +16,7 @@ To properly make this all work, you need to install a bunch of tools!
 12. ripgrep (fast grep replacement)
 13. ag - silversearcher
 14. Archey or screenfetch (displays info about current OS/system)
+15. autorandr (saves/switches monitor setup)
 
 NPM packages to install:
 

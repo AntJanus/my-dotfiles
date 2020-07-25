@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="steeef"
+ZSH_THEME="bureau"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -98,8 +98,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lmk="notify-send 'Something happened!'"
-alias cat="bat"
-alias grep="rg"
+# alias cat="bat"
+# alias grep="rg"
 alias ls="lsd"
 alias open="xdg-open &>/dev/null"
 
@@ -111,19 +111,31 @@ alias killwebpack="fuser -n tcp -k 3001"
 alias kille2e="fuser -n tcp -k 3000 && fuser -n tcp -k 3001"
 alias pd="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
 alias pulldock="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
+alias npscr="jq '.scripts' package.json"
+
+# Tmux
+alias tper="tmux a -dt per"
+alias tstart="cd /home/$(whoami)/projects && ./.start"
+alias twork="tmux a -dt work"
+
+# chrome
+alias chrstart="/home/$(whoami)/projects/chromedriver"
 
 # work aliases
-source /home/antonin/.work_aliases
+source /home/$(whoami)/.work_aliases
 
-source /home/antonin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# lando/php/wp aliases
+source /home/$(whoami)/.lando_aliases
+
+source /home/$(whoami)/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Exports
 NPM_TOKEN=""
 
 export NPM_TOKEN=$NPM_TOKEN
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(direnv hook zsh)"
 export GPG_TTY=$(tty)
@@ -142,6 +154,22 @@ export FZF_DEFAULT_OPTS="--ansi"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+# ASDF
 . $HOME/.asdf/asdf.sh
 
 . $HOME/.asdf/completions/asdf.bash
+
+# Golang
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+# yarn
+export PATH="$PATH:`yarn global bin`"
+
+# deno
+export DENO_INSTALL="/home/$(whoami)/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# ngrok
+export PATH="/home/$(whoami)/projects/bin:$PATH"

@@ -9,6 +9,7 @@ inoremap <Char-0x07F> <BS>
 nnoremap <Char-0x07F> <BS>
 set backspace=indent,eol,start
 set swapfile
+set autoread
 
 if &term =~ '256color'
   set t_ut=
@@ -19,15 +20,23 @@ let mapleader = ","
 set dir=~/.swap-files
 
 call plug#begin('~/.local/share/nvim/plugged')
+ " themes
+ " Plug 'whatyouhide/vim-gotham'
+ " Plug 'flazz/vim-colorschemes'
+ " Plug 'kyoz/purify', { 'rtp': 'vim' }
+ Plug 'dracula/vim', { 'name': 'dracula' }
+
  " Git plugin
  Plug 'tpope/vim-fugitive'
 
  " Syntax checker
- Plug 'w0rp/ale'
- Plug 'Shougo/deoplete.nvim'
-
- " themes
- Plug 'whatyouhide/vim-gotham'
+  Plug 'w0rp/ale'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
  " main plugins
  Plug 'groenewege/vim-less'
@@ -35,30 +44,42 @@ call plug#begin('~/.local/share/nvim/plugged')
  Plug 'bling/vim-airline'
  Plug 'scrooloose/NERDTree'
  Plug 'scrooloose/NERDCommenter'
+
+ " languages
  Plug 'pangloss/vim-javascript'
  Plug 'mxw/vim-jsx'
+ Plug 'maxmellon/vim-jsx-pretty'
  Plug 'HerringtonDarkholme/yats.vim'
- Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
- " Plug 'leafgarland/typescript-vim'
+ " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
+ Plug 'leafgarland/typescript-vim'
+ Plug 'jparise/vim-graphql'
  Plug 'cespare/vim-toml'
  Plug 'slashmili/alchemist.vim'
  Plug 'elixir-editors/vim-elixir'
 
+ " PHP
+ Plug 'StanAngeloff/php.vim'
+
  " Fuzzy search
- Plug '/home/antonin/.fzf'
+ Plug '~/.fzf'
  Plug 'junegunn/fzf.vim'
 
 call plug#end()            " required
 
 filetype plugin indent on     " required!
+let g:jsx_ext_required = 1
 
-let g:colors_name = "gotham"
-set background=dark
 
 set modelines=0
 syntax enable
 set nu
 set ruler
+
+" Colors
+set background=dark
+:silent! colorscheme dracula
+" let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 " remap arrow keys
 noremap <Down> gj
@@ -70,22 +91,56 @@ vnoremap <C-c> "*y
 " Syntax checking and completion
 
 " ALE settings
-" let g:ale_completion_enabled = 1
-let g:ale_linters={'javascript': ['prettier'], 'elixir': ['mix_format']}
-let g:ale_fixers={'javascript': ['prettier'], 'elixir': ['mix_format']}
-let g:ale_fix_on_save=1
-
+let g:ale_completion_enabled = 1
+let g:ale_php_cs_fixer_use_global=1
+let g:ale_php_phpcs_use_global=1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 
+let g:ale_linters={
+\'css': ['prettier'],
+\'elixir': ['mix_format'],
+\'graphql': ['prettier'],
+\'html': ['prettier'],
+\'javascript': ['prettier', 'eslint'],
+\'json': ['prettier'],
+\'php': ['phpcs', 'prettier'],
+\'typescript': ['prettier'],
+\'vim': ['prettier']
+\}
+let g:ale_fixers={
+\'css': ['prettier'],
+\'elixir': ['mix_format'],
+\'graphql': ['prettier'],
+\'javascript': ['prettier', 'eslint'],
+\'html': ['prettier'],
+\'json': ['prettier'],
+\'php': ['php_cs_fixer', 'prettier'],
+\'typescript': ['prettier'],
+\'vim': ['prettier']
+\}
+let g:ale_fix_on_save=1
+
 " Deoplete settings
-let g:deoplete#enable_at_startup=1
+ let g:deoplete#enable_at_startup=1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" LanguageClient settings
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['typescript-language-server --stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
 
 " FZF settings
 nnoremap <leader>t :Files<CR>
 
+call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+let g:airline_section_error = airline#section#create_right(['ALE'])
+
 set statusline+=%#warningmsg#
-set statusline+=%{ALEGetStatusLine()}
 set statusline+=%*
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
@@ -276,8 +331,13 @@ if !empty($CONEMUBUILD)
 endif
 
 " Tender
-if (has("termguicolors"))
-  set termguicolors
+if (empty($TMUX))
+  if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
 endif
 
 " Go

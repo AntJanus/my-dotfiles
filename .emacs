@@ -40,8 +40,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (deeper-blue)))
+ '(custom-safe-themes
+   (quote
+    ("fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "cd736a63aa586be066d5a1f0e51179239fe70e16a9f18991f6f5d99732cabb32" "93a0885d5f46d2aeac12bf6be1754faa7d5e28b27926b8aa812840fe7d0b7983" "3a3de615f80a0e8706208f0a71bbcc7cc3816988f971b6d237223b6731f91605" "d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "b35a14c7d94c1f411890d45edfb9dc1bd61c5becd5c326790b51df6ebf60f402" "51ba4e2db6df909499cd1d85b6be2e543a315b004c67d6f72e0b35b4eb1ef3de" default)))
  '(org-export-backends (quote (ascii html icalendar latex md odt)))
- '(package-selected-packages (quote (htmlize magit ## markdown-mode org))))
+ '(package-selected-packages
+   (quote
+    (doom-themes zerodark-theme htmlize magit ## markdown-mode org))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -58,6 +63,7 @@
   '((emacs-lisp . t)
     (python . t)
     (js . t)
+    (shell . t)
     (awk . t)
     (ruby . t)))
 
@@ -73,7 +79,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; file to save to do items
-(setq org-agenda-files (quote ("E:/Dropbox/notes/daily-todo.org")))
+(setq org-agenda-files (quote ("~/Dropbox/notes/daily-todo.org")))
 
 ;; set priority range from A to C with default A
 (setq org-highest-priority ?A)
@@ -87,7 +93,7 @@
 ;; capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("t" "todo" entry (file+headline "E:/Dropbox/notes/daily-todo.org" "Today")
+      '(("t" "todo" entry (file+headline "~/Dropbox/notes/daily-todo.org" "Today")
 	 "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")))
 
 ;; Abbreviations

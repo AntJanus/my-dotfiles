@@ -8,6 +8,7 @@
 	whitespace = fix
 [core]
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  pager = delta --plus-color="#012800" --minus-color="#340001" --theme="OneHalfLight"
 [color]
 	ui = auto
 [color "branch"]
@@ -34,8 +35,15 @@
 [user]
 	email = antonin@antjanus.com
 	name = Antonin Januska
-	signingkey = DC299F2031117BD2
 [push]
 	default = simple
 [commit]
 	gpgsign = true
+[interactive]
+  diffFilter = delta --color-only
+
+
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    theme = 'OneHalfLight'

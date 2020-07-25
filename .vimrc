@@ -47,7 +47,8 @@ call vundle#begin()
  Plugin 'Tabular'
  Plugin 'pangloss/vim-javascript'
  Plugin 'mxw/vim-jsx'
- Plugin 'leafgarland/typescript-vim'
+ Plugin 'mhartington/nvim-typescript'
+ " Plugin 'leafgarland/typescript-vim'
  " non github repos
  " Plugin 'git://git.wincent.com/command-t.git'
  " ...

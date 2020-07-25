@@ -17,20 +17,24 @@ hide_edge_borders both
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# randr shortcuts
+bindsym $mod+Shift+d exec autorandr --load docked-usbc
+bindsym $mod+Shift+u exec autorandr --load undocked
+
 # screenshot
-bindsym Print exec gnome-screenshot -i
-bindsym $mod+p exec gnome-screenshot -i
+bindsym Print exec flameshot gui
+bindsym $mod+p exec flameshot gui
 
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show combi -lines 5 -eh 2 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Fira Code iScript 13"
 
 # emoji picker
-bindsym $mod+slash exec "~/projects/my-dotfiles/splatmoji/splatmoji type"
+bindsym $mod+slash exec "~/utils/splatmoji/splatmoji type"
 
 # power menu
 bindsym $mod+Escape exec "~/projects/my-dotfiles/utils/power-menu/power-menu.sh"
@@ -124,13 +128,6 @@ bindsym $mod+Shift+8 move container to workspace number $tag8
 bindsym $mod+Shift+9 move container to workspace number $tag9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Application assignments
-assign [class="Code"] $tag1
-assign [class="discord"] $tag2
-assign [class="Slack"] $tag2
-assign [class="Firefox"] $tag3
-assign [class="Spotify"] $tag6
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -153,15 +150,16 @@ bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
 
 # to set the backlight button
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-# bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 
 # set backlight button for keyboard (CM Storm)
 bindsym Scroll_Lock exec ~/.config/i3/keyboard_lights.sh
 
-# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-# bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
-# bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+# Audio
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
+bindsym XF86AudioMute exec "amixer -D pulse set Master 1+ toggle"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -283,10 +281,14 @@ bar {
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id killall conky; conky -c ~/.conkyrc
 
-# exec xbacklight -set 15
-# exec xbindkeys
+exec xbacklight -set 15
+exec xbindkeys
 
 # Gnome stuff
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id gnome-flashback
+# exec --no-startup-id gnome-flashback
+exec --no-startup-id dunst
+
+# XFCE stuff
+# exec_always --no-startup-id xfce4-power-manager

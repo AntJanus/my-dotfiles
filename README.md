@@ -12,8 +12,8 @@ To properly make this all work, you need to install a bunch of tools!
 8. ranger (file manager)
 9. conky
 10. fd (find replacement, works with fzf)
-11. fzf (fuzzy finder)
-12. ripgrep (fast grep replacement)
+11. [fzf (fuzzy finder)](https://github.com/junegunn/fzf)
+12. [ripgrep (fast grep replacement)](https://github.com/burntsushi/ripgrep)
 13. ag - silversearcher
 14. Archey or screenfetch (displays info about current OS/system)
 15. autorandr (saves/switches monitor setup)
@@ -24,4 +24,40 @@ NPM packages to install:
 npm install -g \
 	commitizen \
 	cz-conventional-changelog
+```
+
+### NeoVIM
+
+Resources:
+
+- [Plug](https://github.com/junegunn/vim-plug)
+
+To install:
+
+```
+sudo apt install neovim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
+Install plugins:
+
+```
+nvim
+:PlugInstall
+:checkhealth
+:UpdateRemotePlugins
+```
+
+Usual suspects:
+
+```
+npm install -g neovim
+```
+
+### FZF
+
+```
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```

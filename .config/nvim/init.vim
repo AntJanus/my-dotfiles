@@ -135,6 +135,7 @@ let g:LanguageClient_serverCommands = {
 
 " FZF settings
 nnoremap <leader>t :Files<CR>
+nnoremap <leader>t :Rg<CR>
 
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')

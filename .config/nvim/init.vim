@@ -47,7 +47,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
  " languages
  Plug 'pangloss/vim-javascript'
- Plug 'mxw/vim-jsx'
+ " Plug 'mxw/vim-jsx'
  Plug 'maxmellon/vim-jsx-pretty'
  Plug 'HerringtonDarkholme/yats.vim'
  " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
@@ -62,7 +62,8 @@ call plug#begin('~/.local/share/nvim/plugged')
  Plug 'StanAngeloff/php.vim'
 
  " Fuzzy search
- Plug '~/.fzf'
+" Plug '~/.fzf'
+ Plug 'junegunn/fzf'
  Plug 'junegunn/fzf.vim'
 
 call plug#end()            " required
@@ -92,30 +93,36 @@ vnoremap <C-c> "*y
 
 " ALE settings
 let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
 let g:ale_php_cs_fixer_use_global=1
 let g:ale_php_phpcs_use_global=1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_linter_aliases = {'typescriptreact': 'typescript', 'javascriptreact': 'javascript'}
+let g:ale_fixer_aliases = {'typescriptreact': 'typescript', 'javascriptreact': 'javascript'}
+
 
 let g:ale_linters={
 \'css': ['prettier'],
 \'elixir': ['mix_format'],
 \'graphql': ['prettier'],
 \'html': ['prettier'],
-\'javascript': ['prettier', 'eslint'],
+\'javascript': ['eslint'],
 \'json': ['prettier'],
 \'php': ['phpcs', 'prettier'],
-\'typescript': ['prettier'],
+\'typescript': ['eslint', 'prettier'],
+\'typescriptreact': ['eslint', 'prettier'],
 \'vim': ['prettier']
 \}
 let g:ale_fixers={
 \'css': ['prettier'],
 \'elixir': ['mix_format'],
 \'graphql': ['prettier'],
-\'javascript': ['prettier', 'eslint'],
+\'javascript': ['eslint'],
 \'html': ['prettier'],
 \'json': ['prettier'],
 \'php': ['php_cs_fixer', 'prettier'],
-\'typescript': ['prettier'],
+\'typescript': ['eslint', 'prettier'],
+\'typescriptreact': ['eslint', 'prettier'],
 \'vim': ['prettier']
 \}
 let g:ale_fix_on_save=1
@@ -135,7 +142,7 @@ let g:LanguageClient_serverCommands = {
 
 " FZF settings
 nnoremap <leader>t :Files<CR>
-nnoremap <leader>t :Rg<CR>
+nnoremap <leader>g :Rg<CR>
 
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
@@ -165,9 +172,10 @@ set ttyfast
 set laststatus=2
 set number
 set cursorline
+set colorcolumn=80
 
 "Folding
-set foldenable    " disable folding
+set nofoldenable    " disable folding
 set foldnestmax=10
 set foldmethod=indent
 

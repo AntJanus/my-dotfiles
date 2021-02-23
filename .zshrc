@@ -68,7 +68,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract web-search git-extras docker docker-compose command-not-found)
+plugins=(git extract web-search git-extras docker docker-compose command-not-found zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,37 +97,38 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lmk="notify-send 'Something happened!'"
+
+# Disabled aliases
+#
+# alias lmk="notify-send 'Something happened!'"
 # alias cat="bat"
 # alias grep="rg"
 alias ls="lsd"
-alias open="xdg-open &>/dev/null"
+# alias open="xdg-open &>/dev/null"
 
 alias git-branch="git symbolic-ref --short HEAD"
 alias git-up="git symbolic-ref --short HEAD | xargs git push -u origin "
 
-alias killnode="fuser -n tcp -k 3000"
-alias killwebpack="fuser -n tcp -k 3001"
-alias kille2e="fuser -n tcp -k 3000 && fuser -n tcp -k 3001"
-alias pd="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
-alias pulldock="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
-alias npscr="jq '.scripts' package.json"
+# alias killnode="fuser -n tcp -k 3000"
+# alias killwebpack="fuser -n tcp -k 3001"
+# alias kille2e="fuser -n tcp -k 3000 && fuser -n tcp -k 3001"
+# alias pd="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
+# alias pulldock="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
 
 # Tmux
-alias tper="tmux a -dt per"
-alias tstart="cd /home/$(whoami)/projects && ./.start"
-alias twork="tmux a -dt work"
+#
+# alias tper="tmux a -dt per"
+# alias tstart="cd /home/$(whoami)/projects && ./.start"
+# alias twork="tmux a -dt work"
 
-# chrome
-alias chrstart="/home/$(whoami)/projects/chromedriver"
+# Helpers
+alias np-scripts="jq '.scripts' package.json"
+alias np-version="jq '.version' package.json"
 
-# work aliases
-source /home/$(whoami)/.work_aliases
+alias reload-zsh="source ~/.zshrc"
 
-# lando/php/wp aliases
-source /home/$(whoami)/.lando_aliases
-
-source /home/$(whoami)/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# aliases
+source ~/.work_aliases
 
 # Exports
 NPM_TOKEN=""
@@ -155,9 +156,9 @@ export FZF_DEFAULT_OPTS="--ansi"
 
 
 # ASDF
-. $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/asdf.sh
 
-. $HOME/.asdf/completions/asdf.bash
+# . $HOME/.asdf/completions/asdf.bash
 
 # Golang
 export GOROOT=/usr/local/go

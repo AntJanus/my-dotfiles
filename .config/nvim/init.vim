@@ -31,12 +31,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
  " Syntax checker
   Plug 'w0rp/ale'
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
  " main plugins
  Plug 'groenewege/vim-less'
@@ -89,7 +85,9 @@ noremap <Up> gk
 " copy
 vnoremap <C-c> "*y
 
-" Syntax checking and completion
+" Coc
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-prettier', 'coc-elixir', 'coc-fzf-preview', 'coc-yaml', 'coc-styled-components']
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " ALE settings
 let g:ale_completion_enabled = 1
@@ -126,19 +124,6 @@ let g:ale_fixers={
 \'vim': ['prettier']
 \}
 let g:ale_fix_on_save=1
-
-" Deoplete settings
- let g:deoplete#enable_at_startup=1
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" LanguageClient settings
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['typescript-language-server --stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
 
 " FZF settings
 nnoremap <leader>t :Files<CR>

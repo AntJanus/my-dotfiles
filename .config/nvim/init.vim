@@ -25,6 +25,7 @@ call plug#begin('~/.local/share/nvim/plugged')
  " Plug 'flazz/vim-colorschemes'
  " Plug 'kyoz/purify', { 'rtp': 'vim' }
  Plug 'dracula/vim', { 'name': 'dracula' }
+ Plug 'mhartington/oceanic-next'
 
  " Git plugin
  Plug 'tpope/vim-fugitive'
@@ -75,7 +76,10 @@ set ruler
 
 " Colors
 set background=dark
-:silent! colorscheme dracula
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+:silent! colorscheme OceanicNext
+let g:airline_theme='oceanicnext'
 " let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 " remap arrow keys

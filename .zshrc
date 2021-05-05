@@ -108,6 +108,7 @@ alias ls="lsd"
 
 alias git-branch="git symbolic-ref --short HEAD"
 alias git-up="git symbolic-ref --short HEAD | xargs git push -u origin "
+alias git-ls="git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/"
 
 # alias killnode="fuser -n tcp -k 3000"
 # alias killwebpack="fuser -n tcp -k 3001"
@@ -126,6 +127,7 @@ alias np-scripts="jq '.scripts' package.json"
 alias np-version="jq '.version' package.json"
 
 alias reload-zsh="source ~/.zshrc"
+alias cdh="cd ~"
 
 # aliases
 source ~/.work_aliases
@@ -174,3 +176,10 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 # ngrok
 export PATH="/home/$(whoami)/projects/bin:$PATH"
+
+alias vim=nvim
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

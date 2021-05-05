@@ -3,6 +3,7 @@
 	amend = commit --amend --no-edit
 	pf = push -f
   current = symbolic-ref --short HEAD
+  ls= for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/
 
 [apply]
 	whitespace = fix
@@ -37,8 +38,6 @@
 	name = Antonin Januska
 [push]
 	default = simple
-[commit]
-	gpgsign = true
 [interactive]
   diffFilter = delta --color-only
 
@@ -47,3 +46,12 @@
     plus-color = "#012800"
     minus-color = "#340001"
     theme = 'OneHalfLight'
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

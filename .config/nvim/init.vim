@@ -33,7 +33,11 @@ call plug#begin('~/.local/share/nvim/plugged')
  " Syntax checker
   Plug 'w0rp/ale'
 
+ " Tabnine
+ Plug 'codota/tabnine-vim'
+
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'honza/vim-snippets'
 
  " main plugins
  Plug 'groenewege/vim-less'
@@ -89,9 +93,31 @@ noremap <Up> gk
 " copy
 vnoremap <C-c> "*y
 
-" Coc
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-prettier', 'coc-elixir', 'coc-fzf-preview', 'coc-yaml', 'coc-styled-components']
+"""" Coc
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-prettier', 'coc-elixir', 'coc-fzf-preview', 'coc-yaml', 'coc-styled-components', 'coc-snippets']
+" tab will cycle through options
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" selects and auto-imports option
+inoremap <expr><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Should I add like a \"c\" prefix to indicate it's CoC?
+" so it'd be \"cd\" to go to definition?
+" Go to definition
+function! s:GoToDefinition()
+  if CocAction('jumpDefinition')
+    return v:true
+  endif
+
+  let ret = execute("silent! normal \<C-]>")
+  if ret =~ "Error"
+    call searchdecl(expand('<cword>'))
+  endif
+endfunction
+
+nmap <silent> gl :call <SID>GoToDefinition()<CR>
+
+nnoremap gh <Plug>(coc-references)
+"""" /Coc
 
 " ALE settings
 let g:ale_completion_enabled = 1
@@ -145,7 +171,7 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
 set tabstop=2
 set softtabstop=2
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
 
 set encoding=utf-8

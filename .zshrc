@@ -68,7 +68,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract web-search git-extras docker docker-compose command-not-found zsh-syntax-highlighting)
+plugins=(git extract web-search git-extras docker docker-compose command-not-found zsh-syntax-highlighting nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,7 +108,6 @@ alias ls="lsd"
 
 alias git-branch="git symbolic-ref --short HEAD"
 alias git-up="git symbolic-ref --short HEAD | xargs git push -u origin "
-alias git-ls="git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/"
 
 # alias killnode="fuser -n tcp -k 3000"
 # alias killwebpack="fuser -n tcp -k 3001"

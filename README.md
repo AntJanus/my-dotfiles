@@ -22,8 +22,25 @@ NPM packages to install:
 
 ```sh
 npm install -g \
-	commitizen \
-	cz-conventional-changelog
+cloc \
+commitizen \
+cz-conventional-changelog \
+eslint \
+lint-cli \
+markdownlint \
+neovim \
+np \
+npm-check-updates \
+npm \
+prettier \
+tern \
+tslint \
+types \
+typescript-language-server \
+typescript \
+typings \
+watchify \
+webpack
 ```
 
 ### NeoVIM

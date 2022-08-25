@@ -15,6 +15,11 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+" gui colors
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 let mapleader = ","
 
 set dir=~/.swap-files
@@ -34,7 +39,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'w0rp/ale'
 
  " Tabnine
- Plug 'codota/tabnine-vim'
+ " Plug 'codota/tabnine-vim'
 
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
  Plug 'honza/vim-snippets'
@@ -82,8 +87,8 @@ set ruler
 set background=dark
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-:silent! colorscheme OceanicNext
-let g:airline_theme='oceanicnext'
+:silent! colorscheme Dracula
+let g:airline_theme='dracula'
 " let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 " remap arrow keys
@@ -95,10 +100,32 @@ vnoremap <C-c> "*y
 
 """" Coc
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-prettier', 'coc-elixir', 'coc-fzf-preview', 'coc-yaml', 'coc-styled-components', 'coc-snippets']
-" tab will cycle through options
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" selects and auto-imports option
-inoremap <expr><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Should I add like a \"c\" prefix to indicate it's CoC?
 " so it'd be \"cd\" to go to definition?
@@ -117,6 +144,29 @@ endfunction
 nmap <silent> gl :call <SID>GoToDefinition()<CR>
 
 nnoremap gh <Plug>(coc-references)
+nnoremap gr <Plug>(coc-rename)
+
+""" SNIPPETS
+
+let g:coc_snippet_next = '<tab>'
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
 """" /Coc
 
 " ALE settings
@@ -352,16 +402,6 @@ if !empty($CONEMUBUILD)
     let g:airline_symbols = {}
   endif
 
-endif
-
-" Tender
-if (empty($TMUX))
-  if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
 endif
 
 " Go

@@ -101,7 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # Disabled aliases
 #
 # alias lmk="notify-send 'Something happened!'"
-# alias cat="bat"
+alias cat="bat"
 # alias grep="rg"
 alias ls="lsd"
 # alias open="xdg-open &>/dev/null"
@@ -156,11 +156,6 @@ export FZF_DEFAULT_OPTS="--ansi"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# ASDF
-# . $HOME/.asdf/asdf.sh
-
-# . $HOME/.asdf/completions/asdf.bash
-
 # Golang
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
@@ -178,7 +173,18 @@ export PATH="/home/$(whoami)/projects/bin:$PATH"
 
 alias vim=nvim
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ASDF
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+# Rust
+source $HOME/.cargo/env
+alias rustbook="rustup doc --book"
+export RUSTC_WRAPPER=sccache
+
+# bun completions
+[ -s "/Users/antonin/.bun/_bun" ] && source "/Users/antonin/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/Users/antonin/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

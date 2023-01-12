@@ -25,52 +25,55 @@ let mapleader = ","
 set dir=~/.swap-files
 
 call plug#begin('~/.local/share/nvim/plugged')
- " themes
- " Plug 'whatyouhide/vim-gotham'
- " Plug 'flazz/vim-colorschemes'
- " Plug 'kyoz/purify', { 'rtp': 'vim' }
- Plug 'dracula/vim', { 'name': 'dracula' }
- Plug 'mhartington/oceanic-next'
+" themes
+" Plug 'whatyouhide/vim-gotham'
+" Plug 'flazz/vim-colorschemes'
+" Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'dracula/vim', { 'name': 'dracula' }
+Plug 'mhartington/oceanic-next'
 
- " Git plugin
- Plug 'tpope/vim-fugitive'
+" Git plugin
+Plug 'tpope/vim-fugitive'
 
- " Syntax checker
-  Plug 'w0rp/ale'
+" Syntax checker
+Plug 'w0rp/ale'
 
- " Tabnine
- " Plug 'codota/tabnine-vim'
+" Tabnine
+" Plug 'codota/tabnine-vim'
 
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
- Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 
- " main plugins
- Plug 'groenewege/vim-less'
- Plug 'editorconfig/editorconfig-vim'
- Plug 'bling/vim-airline'
- Plug 'scrooloose/NERDTree'
- Plug 'scrooloose/NERDCommenter'
+" main plugins
+Plug 'groenewege/vim-less'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/NERDTree'
+Plug 'scrooloose/NERDCommenter'
 
- " languages
- Plug 'pangloss/vim-javascript'
- " Plug 'mxw/vim-jsx'
- Plug 'maxmellon/vim-jsx-pretty'
- Plug 'HerringtonDarkholme/yats.vim'
- " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" languages
+Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
- Plug 'leafgarland/typescript-vim'
- Plug 'jparise/vim-graphql'
- Plug 'cespare/vim-toml'
- Plug 'slashmili/alchemist.vim'
- Plug 'elixir-editors/vim-elixir'
+Plug 'leafgarland/typescript-vim'
+Plug 'jparise/vim-graphql'
+Plug 'cespare/vim-toml'
+Plug 'slashmili/alchemist.vim'
+Plug 'elixir-editors/vim-elixir'
 
- " PHP
- Plug 'StanAngeloff/php.vim'
+" PHP
+Plug 'StanAngeloff/php.vim'
 
- " Fuzzy search
+" Fuzzy search
 " Plug '~/.fzf'
- Plug 'junegunn/fzf'
- Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
+
+" Github copilot
+Plug 'github/copilot.vim'
 
 call plug#end()            " required
 
@@ -98,6 +101,10 @@ noremap <Up> gk
 " copy
 vnoremap <C-c> "*y
 
+" copilot
+let g:copilot_autostart = 1
+let g:copilot_node_command = "~/.nvm/versions/node/v18.12.1/bin/node"
+
 """" Coc
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-tsserver', 'coc-prettier', 'coc-elixir', 'coc-fzf-preview', 'coc-yaml', 'coc-styled-components', 'coc-snippets']
 
@@ -113,7 +120,7 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1
@@ -180,33 +187,34 @@ let g:ale_fixer_aliases = {'typescriptreact': 'typescript', 'javascriptreact': '
 
 
 let g:ale_linters={
-\'css': ['prettier'],
-\'elixir': ['mix_format'],
-\'graphql': ['prettier'],
-\'html': ['prettier'],
-\'javascript': ['eslint'],
-\'json': ['prettier'],
-\'php': ['phpcs', 'prettier'],
-\'typescript': ['eslint', 'prettier'],
-\'typescriptreact': ['eslint', 'prettier'],
-\'vim': ['prettier']
-\}
+      \'css': ['prettier'],
+      \'elixir': ['mix_format'],
+      \'graphql': ['prettier'],
+      \'html': ['prettier'],
+      \'javascript': ['eslint'],
+      \'json': ['prettier'],
+      \'php': ['phpcs', 'prettier'],
+      \'typescript': ['eslint', 'prettier'],
+      \'typescriptreact': ['eslint', 'prettier'],
+      \'vim': ['prettier']
+      \}
 let g:ale_fixers={
-\'css': ['prettier'],
-\'elixir': ['mix_format'],
-\'graphql': ['prettier'],
-\'javascript': ['eslint'],
-\'html': ['prettier'],
-\'json': ['prettier'],
-\'php': ['php_cs_fixer', 'prettier'],
-\'typescript': ['eslint', 'prettier'],
-\'typescriptreact': ['eslint', 'prettier'],
-\'vim': ['prettier']
-\}
+      \'css': ['prettier'],
+      \'elixir': ['mix_format'],
+      \'graphql': ['prettier'],
+      \'javascript': ['eslint'],
+      \'html': ['prettier'],
+      \'json': ['prettier'],
+      \'php': ['php_cs_fixer', 'prettier'],
+      \'typescript': ['eslint', 'prettier'],
+      \'typescriptreact': ['eslint', 'prettier'],
+      \'vim': ['prettier']
+      \}
 let g:ale_fix_on_save=1
 
 " FZF settings
 nnoremap <leader>t :Files<CR>
+nnoremap <leader>o :Buffers<CR>
 nnoremap <leader>g :Rg<CR>
 
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
@@ -303,6 +311,9 @@ nnoremap <leader>bl :ls<CR>
 " Airline settings
 let g:airline#extensions#tabline#enabled =1
 let g:airline_powerline_fonts=1
+
+" NERDTree
+let g:NERDTreeMinimalMenu=1
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 
@@ -311,18 +322,18 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 augroup whitespace
-    autocmd!
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
+  autocmd!
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
 augroup END
 
 augroup fzf
   autocmd!
   autocmd! FileType fzf
   autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+        \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
 
 set undolevels=20
@@ -370,9 +381,9 @@ set fileformats=unix,dos
 
 " Abbreviations
 "augroup abbreviations
-    "autocmd!
-    "autocmd FileType html :iabbrev <buffer> --- &mdash;
-    "autocmd FileType javascript :iabbrev <buffer> ret return
+"autocmd!
+"autocmd FileType html :iabbrev <buffer> --- &mdash;
+"autocmd FileType javascript :iabbrev <buffer> ret return
 "augroup END
 "
 "ConEmu settings

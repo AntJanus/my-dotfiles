@@ -32,12 +32,11 @@ To properly make this all work, you need to install a bunch of tools!
 ```sh
 npm install -g \
 eslint \
-lint-cli 
+lint-cli \
 neovim \
 np \
 npm-check-updates \
 prettier \
-typescript-language-server \
 typescript
 ```
 

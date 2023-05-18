@@ -60,6 +60,11 @@ To install on MacOS (with homebrew):
 brew install neovim
 ```
 
+### AstroNvim
+
+https://github.com/AstroNvim/AstroNvim
+
+Setup: https://github.com/AntJanus/astronvim_config
 
 ### FZF
 

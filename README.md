@@ -4,73 +4,62 @@ To properly make this all work, you need to install a bunch of tools!
 
 1. Node + NVM
 2. zsh and oh-my-zsh
-3. neovim
-4. rofi (dmenu replacement)
-5. lsd (ls substitute)
-6. bat (cat substitute)
-7. slapmoji (emojis)
-8. ranger (file manager)
-9. conky
-10. [fd (find replacement, works with fzf)](https://github.com/sharkdp/fd)
-11. [fzf (fuzzy finder)](https://github.com/junegunn/fzf)
-12. [ripgrep (fast grep replacement)](https://github.com/burntsushi/ripgrep)
-13. ag - silversearcher
-14. Archey or screenfetch (displays info about current OS/system)
-15. autorandr (saves/switches monitor setup)
+3. [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+4. asdf 
+6. lsd (ls substitute)
+7. bat (cat substitute)
+8. slapmoji (emojis)
+9. ranger (file manager)
+11. [fd (find replacement, works with fzf)](https://github.com/sharkdp/fd)
+12. [fzf (fuzzy finder)](https://github.com/junegunn/fzf)
+13. [ripgrep (fast grep replacement)](https://github.com/burntsushi/ripgrep)
+14. ag - silversearcher
 
-NPM packages to install:
+**Ubuntu only:**
+
+1. Archey or screenfetch (displays info about current OS/system)
+2. autorandr (saves/switches monitor setup)
+3. rofi (dmenu replacement)
+4.  conky
+
+**MacOS only:**
+
+1. Homebrew
+
+**NPM packages**
 
 ```sh
 npm install -g \
-cloc \
-commitizen \
-cz-conventional-changelog \
 eslint \
-lint-cli \
-markdownlint \
+lint-cli 
 neovim \
 np \
 npm-check-updates \
-npm \
 prettier \
-tern \
-tslint \
-types \
 typescript-language-server \
-typescript \
-typings \
-watchify \
-webpack
+typescript
 ```
 
 ### NeoVIM
 
 Resources:
 
-- [Plug](https://github.com/junegunn/vim-plug)
+- [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
-To install:
+To install on Ubuntu:
 
-```
+```sh
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
 sudo apt install neovim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-Install plugins:
+To install on MacOS (with homebrew):
 
-```
-nvim
-:PlugInstall
-:checkhealth
-:UpdateRemotePlugins
+```sh
+brew install neovim
 ```
 
-Usual suspects:
-
-```
-npm install -g neovim
-```
 
 ### FZF
 

@@ -4,12 +4,13 @@ To properly make this all work, you need to install a bunch of tools!
 
 1. Node + NVM
 2. zsh and oh-my-zsh
-3. [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-4. asdf 
-6. lsd (ls substitute)
-7. bat (cat substitute)
-8. slapmoji (emojis)
-9. ranger (file manager)
+3. tmux
+4. asdf
+5. [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+7. lsd (ls substitute)
+8. bat (cat substitute)
+9. slapmoji (emojis)
+10. ranger (file manager)
 11. [fd (find replacement, works with fzf)](https://github.com/sharkdp/fd)
 12. [fzf (fuzzy finder)](https://github.com/junegunn/fzf)
 13. [ripgrep (fast grep replacement)](https://github.com/burntsushi/ripgrep)

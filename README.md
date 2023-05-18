@@ -5,10 +5,10 @@ To properly make this all work, you need to install a bunch of tools!
 1. Node + NVM
 2. zsh and oh-my-zsh
 3. tmux
-4. asdf
+4. [asdf](https://asdf-vm.com/guide/getting-started.html)
 5. [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-7. lsd (ls substitute)
-8. bat (cat substitute)
+7. [lsd (ls substitute)](https://github.com/lsd-rs/lsd)
+8. [bat (cat substitute)](https://github.com/sharkdp/bat)
 9. slapmoji (emojis)
 10. ranger (file manager)
 11. [fd (find replacement, works with fzf)](https://github.com/sharkdp/fd)

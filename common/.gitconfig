@@ -9,7 +9,6 @@
 	whitespace = fix
 [core]
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-  pager = delta --plus-color="#012800" --minus-color="#340001" --theme="OneHalfLight"
 [color]
 	ui = auto
 [color "branch"]
@@ -46,10 +45,6 @@
     plus-color = "#012800"
     minus-color = "#340001"
     theme = 'OneHalfLight'
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

@@ -1,90 +1,56 @@
 ## Ant's Dotfiles
 
-To properly make this all work, you need to install a bunch of tools!
+Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-1. Node + NVM
-2. zsh and oh-my-zsh
-3. tmux
-4. [asdf](https://asdf-vm.com/guide/getting-started.html)
-5. [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-7. [lsd (ls substitute)](https://github.com/lsd-rs/lsd)
-8. [bat (cat substitute)](https://github.com/sharkdp/bat)
-9. slapmoji (emojis)
-10. ranger (file manager)
-11. [fd (find replacement, works with fzf)](https://github.com/sharkdp/fd)
-12. [fzf (fuzzy finder)](https://github.com/junegunn/fzf)
-13. [ripgrep (fast grep replacement)](https://github.com/burntsushi/ripgrep)
-14. ag - silversearcher
-
-**Ubuntu only:**
-
-1. Archey or screenfetch (displays info about current OS/system)
-2. autorandr (saves/switches monitor setup)
-3. rofi (dmenu replacement)
-4.  conky
-
-**MacOS only:**
-
-1. Homebrew
-
-**NPM packages**
-
-```sh
-npm install -g \
-eslint \
-lint-cli \
-neovim \
-np \
-npm-check-updates \
-prettier \
-typescript
-```
-
-### NeoVIM
-
-Resources:
-
-- [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-
-To install on Ubuntu:
-
-```sh
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt-get update
-sudo apt install neovim
-```
-
-To install on MacOS (with homebrew):
-
-```sh
-brew install neovim
-```
-
-### AstroNvim
-
-https://github.com/AstroNvim/AstroNvim
-
-Setup: https://github.com/AntJanus/astronvim_config
-
-### FZF
-
-```
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-```
-
-### Fd
+### Quick Start (macOS)
 
 ```bash
-sudo apt install fd-find
+# Install everything + deploy dotfiles
+./bootstrap-macos.sh
 ```
 
-### ZSH Syntax Highlighting
+Or deploy manually:
 
-https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
-
-```sh
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```bash
+brew install stow
+cd ~/projects/antjanus/my-dotfiles
+stow -t ~ common
 ```
 
+### Quick Start (Linux)
 
+```bash
+sudo apt install stow
+cd ~/projects/antjanus/my-dotfiles
+stow -t ~ common linux
+```
+
+### Stow Packages
+
+| Package | Contents | Platform |
+|---------|----------|----------|
+| `common/` | `.zshrc`, `.tmux.conf`, `.gitconfig`, `.fzf.zsh`, `.fzf.bash`, `.editorconfig`, `.inputrc`, `.curlrc`, `.psqlrc`, `.emacs` | All |
+| `linux/` | `.config/i3/`, `.config/dunst/`, `.config/rofi/`, `.config/ranger/`, `.conkyrc`, `.i3status.conf` | Linux/i3 |
+
+### Undeploy
+
+```bash
+stow -t ~ -D common       # remove common symlinks
+stow -t ~ -D common linux  # remove all symlinks
+```
+
+### Managed Separately
+
+These configs have their own git repos and are NOT in this dotfiles repo:
+
+- `~/.config/nvim/` -- LazyVim setup
+- `~/.config/kitty/` -- kitty terminal config
+- [AstroNvim config](https://github.com/AntJanus/astronvim_config)
+
+### Post-Install
+
+1. Install tmux plugins: press `prefix + I` inside tmux
+2. Install Node: `nvm install --lts`
+3. Set up env files: create `~/.work-env` and `~/.personal-env` for API keys
+4. Set up nvim: clone your nvim config to `~/.config/nvim/`
+5. Set up kitty: clone your kitty config to `~/.config/kitty/`

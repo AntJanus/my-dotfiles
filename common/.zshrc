@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -68,7 +68,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract web-search git-extras docker docker-compose command-not-found zsh-syntax-highlighting nvm)
+plugins=(git extract git-extras docker docker-compose command-not-found zsh-syntax-highlighting nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,28 +98,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Disabled aliases
-#
-# alias lmk="notify-send 'Something happened!'"
+# CLI tool replacements
 alias cat="bat"
 # alias grep="rg"
 alias ls="lsd"
-# alias open="xdg-open &>/dev/null"
 
+# Git helpers
 alias git-branch="git symbolic-ref --short HEAD"
 alias git-up="git symbolic-ref --short HEAD | xargs git push -u origin "
-
-# alias killnode="fuser -n tcp -k 3000"
-# alias killwebpack="fuser -n tcp -k 3001"
-# alias kille2e="fuser -n tcp -k 3000 && fuser -n tcp -k 3001"
-# alias pd="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
-# alias pulldock="echo \"Pulling and spinning up docker...\n\" && sudo docker-compose pull && sudo docker-compose up -d && notify-send 'Docker is ready!'"
-
-# Tmux
-#
-# alias tper="tmux a -dt per"
-# alias tstart="cd /home/$(whoami)/projects && ./.start"
-# alias twork="tmux a -dt work"
 
 # Helpers
 alias np-scripts="jq '.scripts' package.json"
@@ -128,26 +114,7 @@ alias np-version="jq '.version' package.json"
 alias reload-zsh="source ~/.zshrc"
 alias cdh="cd ~"
 
-# aliases
-source ~/.work_aliases
-
-# Exports
-NPM_TOKEN=""
-
-export NPM_TOKEN=$NPM_TOKEN
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-eval "$(direnv hook zsh)"
 export GPG_TTY=$(tty)
-
-# KITTY SETUP
-# autoload -Uz compinit
-# compinit
-
-# Completion for kitty
-# kitty + complete setup zsh | source /dev/stdin
 
 # FZF fd
 export FZF_DEFAULT_COMMAND="fd --type file --color=always"
@@ -155,36 +122,27 @@ export FZF_DEFAULT_OPTS="--ansi"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
-# Golang
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
-# yarn
-export PATH="$PATH:`yarn global bin`"
-
-# deno
-export DENO_INSTALL="/home/$(whoami)/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-# ngrok
-export PATH="/home/$(whoami)/projects/bin:$PATH"
-
 alias vim=nvim
 
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# ASDF
-. /usr/local/opt/asdf/libexec/asdf.sh
+# cargo/rust
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-# Rust
-source $HOME/.cargo/env
-alias rustbook="rustup doc --book"
-export RUSTC_WRAPPER=sccache
+# Env files (API keys, work config -- not committed to repo)
+# Create ~/.work-env and ~/.personal-env locally
+alias source_work="source ~/.work-env"
+alias source_personal="source ~/.personal-env"
 
-# bun completions
-[ -s "/Users/antonin/.bun/_bun" ] && source "/Users/antonin/.bun/_bun"
+# personal aliases (not committed to repo)
+[ -f ~/.my_aliases ] && source ~/.my_aliases
 
-# Bun
-export BUN_INSTALL="/Users/antonin/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# Tmux
+export DISABLE_AUTO_TITLE=true
+
+
+# Kitty helpers
+alias icat="kitten icat"

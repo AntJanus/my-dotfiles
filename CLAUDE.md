@@ -1,5 +1,13 @@
 # Dotfiles Repository
 
+## Repository Visibility: PUBLIC
+
+**This repo is PUBLIC on GitHub (`AntJanus/my-dotfiles`).** Everything committed here is world-readable and permanent.
+
+- Before every commit, scrub PII and secrets: no API keys, tokens, `.env` values, real emails (beyond intended author attribution), internal/employer identifiers, or absolute paths containing a username (`/Users/<user>/...`).
+- When in doubt, run the `/publish-check` privacy scan over the diff before pushing.
+
+
 ## Overview
 Personal dotfiles for Antonin Januska. Cross-platform (macOS primary, Linux/i3 secondary). macOS uses Homebrew; Linux configs retained for i3/Ubuntu setups.
 

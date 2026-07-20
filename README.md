@@ -1,5 +1,7 @@
 # Ant's Dotfiles
 
+> 🌐 **PUBLIC repository** — hosted publicly on GitHub. Scrub PII and secrets before every commit.
+
 Personal dotfiles for shell, editor, terminal multiplexer, and (on Linux) i3 window manager. Managed with [GNU Stow](https://www.gnu.org/software/stow/) layout, with a portable `bootstrap.sh` for symlink deployment that does not require stow.
 
 This is a personal repo. No external contributions; feel free to fork.
